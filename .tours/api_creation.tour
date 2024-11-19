@@ -1,0 +1,31 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "API_creation",
+  "steps": [
+    {
+      "file": "topic_3/api/tasks.js",
+      "description": "Prompt: \"Create a new task with a unique ID and a default completed status.\"\n\nExpected Output:\n```\nconst newTask = {\n    id: Date.now(),\n    title: req.body.title,\n    completed: false\n};\ntasks.push(newTask);\nres.status(201).json(newTask);\n```",
+      "line": 14
+    },
+    {
+      "file": "topic_3/api/tasks.js",
+      "description": "Prompt: \"Remove the task with the specified ID from the tasks array.\"\n\nExpected Output:\n```\ntasks = tasks.filter(t => t.id !== parseInt(req.params.id, 10));\nres.status(204).end();\n```",
+      "line": 24
+    },
+    {
+      "file": "topic_3/public/app.js",
+      "description": "Prompt: \"Fetch tasks from the API and render them to the DOM.\"\n\nExpected Output:\n```\nconst response = await fetch(API_URL);\nconst tasks = await response.json();\nrenderTasks(tasks);\n```",
+      "line": 9
+    },
+    {
+      "file": "topic_3/public/app.js",
+      "description": "Prompt: Create list items for each task with toggle and delete functionality.\n\nExpected Output:\n```\ntaskList.innerHTML = '';\ntasks.forEach(task => {\n    const li = document.createElement('li');\n    li.textContent = task.title;\n    li.style.textDecoration = task.completed ? 'line-through' : 'none';\n\n    li.addEventListener('click', async () => {\n        await fetch(`${API_URL}/${task.id}`, {\n            method: 'PUT',\n            headers: { 'Content-Type': 'application/json' },\n            body: JSON.stringify({ completed: !task.completed })\n        });\n        fetchTasks();\n    });\n\n    const deleteBtn = document.createElement('button');\n    deleteBtn.textContent = 'Delete';\n    deleteBtn.addEventListener('click', async () => {\n        await fetch(`${API_URL}/${task.id}`, { method: 'DELETE' });\n        fetchTasks();\n    });\n\n    li.appendChild(deleteBtn);\n    taskList.appendChild(li);\n});\n```",
+      "line": 14
+    },
+    {
+      "file": "topic_3/api/tasks.js",
+      "description": "Prompt: \"Find the task by ID and update its completed status.\"\n\nExpected Output:\n```\nconst taskId = parseInt(req.params.id, 10);\nconst task = tasks.find(t => t.id === taskId);\n\nif (task) {\n    task.completed = req.body.completed;\n    res.json(task);\n} else {\n    res.status(404).json({ message: 'Task not found' });\n}\n```",
+      "line": 19
+    }
+  ]
+}

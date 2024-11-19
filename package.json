@@ -1,0 +1,18 @@
+{
+  "name": "ti-copilot-codespace-demo",
+  "version": "1.0.0",
+  "description": "## Our Mission Our goal is to provide a self-serve, one-click Copilot experience that will be hosted on Codespaces.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "express": "^4.21.1",
+    "path": "^0.12.7"
+  }
+}
