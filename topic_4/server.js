@@ -29,3 +29,7 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
+
+// to start the server, run the following command:
+// cd to topic_4 directory
+// node server.js
