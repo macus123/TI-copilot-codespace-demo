@@ -95,6 +95,35 @@ taskForm.addEventListener('submit', async (e) => {
     }
 });
 
+// Add error handling utility
+const handleApiError = (error, message) => {
+    console.error(message, error);
+    // Add user-friendly error notification here
+};
+
+// Update fetch wrapper with security headers
+const secureFetch = async (url, options = {}) => {
+    try {
+        const response = await fetch(url, {
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                // Add any auth headers here
+                ...options.headers,
+            },
+        });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        return response;
+    } catch (error) {
+        handleApiError(error, 'API request failed');
+        throw error;
+    }
+};
+
 // Initial fetch of tasks
 fetchTasks();
 

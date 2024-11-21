@@ -1,40 +1,60 @@
 const express = require('express');
 const router = express.Router();
+const { body, param, validationResult } = require('express-validator');
+const sanitizeHtml = require('sanitize-html');
 
-// In-memory storage for tasks
+// In-memory tasks array
 let tasks = [];
 
-// GET all tasks
+// Input validation middleware
+const validateTask = [
+    body('title')
+        .trim()
+        .isLength({ min: 1, max: 200 }).withMessage('Title must be between 1 and 200 characters')
+        .custom((value) => {
+            const clean = sanitizeHtml(value, {
+                allowedTags: [],
+                allowedAttributes: {}
+            });
+            if (clean !== value) {
+                throw new Error('Title contains unsafe HTML');
+            }
+            return true;
+        })
+];
+
+const validateId = [
+    param('id').isInt().toInt()
+];
+
+// Routes
 router.get('/', (req, res) => {
     res.json(tasks);
 });
 
-// POST a new task
-router.post('/', (req, res) => {
+router.post('/', validateTask, (req, res) => {
     const newTask = {
         id: tasks.length ? tasks[tasks.length - 1].id + 1 : 1,
-        title: req.body.title,
+        title: sanitizeHtml(req.body.title),
         completed: false
     };
     tasks.push(newTask);
     res.status(201).json(newTask);
 });
 
-// PUT (update) a task
-router.put('/:id', (req, res) => {
+router.put('/:id', validateId, (req, res) => {
     const taskId = parseInt(req.params.id);
     const task = tasks.find(t => t.id === taskId);
 
     if (task) {
-        task.completed = req.body.completed;
+        task.completed = !task.completed;
         res.json(task);
     } else {
         res.status(404).json({ message: 'Task not found' });
     }
 });
 
-// DELETE a task
-router.delete('/:id', (req, res) => {
+router.delete('/:id', validateId, (req, res) => {
     const taskId = parseInt(req.params.id);
     const taskIndex = tasks.findIndex(t => t.id === taskId);
 
