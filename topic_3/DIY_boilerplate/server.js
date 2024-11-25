@@ -1,8 +1,3 @@
-const express = require('express');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-const tasksRouter = require('./routes/tasks');
-
 /* 
 This is the main server file for the project. 
 It sets up the Express server, configures middleware for CORS and body parsing, serves static files, and defines the routes for the tasks API.
@@ -20,22 +15,3 @@ app.use(cors({
     allowedHeaders: ['Content-Type']
 }));
 */
-const app = express();
-const PORT = 3000;
-
-// Middleware
-app.use(cors({
-    origin: '*',
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type']
-}));
-app.use(bodyParser.json());
-app.use(express.static('public'));
-
-// Routes
-app.use('/api/tasks', tasksRouter);
-
-// Start the server
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
