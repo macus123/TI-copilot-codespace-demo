@@ -1,0 +1,31 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "topic_3",
+  "steps": [
+    {
+      "file": "topic_3/DIY_boilerplate/server.js",
+      "description": "This step creates the boilerplate server code for our TO-DO list app.\n\nUse Ctrl+I to bring up the inline chat, and insert a prompt to generate the boilerplate code. Use #file <topic_3/DIY_boilerplate/api/tasks.js> etc to have Copilot factor in the existence of dependencies to this server.js file.",
+      "line": 18
+    },
+    {
+      "file": "topic_3/DIY_boilerplate/api/tasks.js",
+      "description": "This step creates the boilerplate api code for our TO-DO list app.\n\nUse Ctrl+I to bring up the inline chat, and insert a prompt to generate the boilerplate code. Use #file <topic_3/DIY_boilerplate/server.js> etc to have Copilot factor in the existence of dependencies to this server.js file.",
+      "line": 12
+    },
+    {
+      "file": "topic_3/DIY_boilerplate/public/app.js",
+      "description": "This step creates the boilerplate app code for our TO-DO list app.\n\nUse Ctrl+I to bring up the inline chat, and insert a prompt to generate the boilerplate code. Use #file <topic_3/DIY_boilerplate/tasks.js> and #file <topic_3/DIY_boilerplate/server.js> etc to have Copilot factor in the existence of dependencies to this server.js file.",
+      "line": 10
+    },
+    {
+      "file": "topic_3/DIY_boilerplate/public/index.html",
+      "description": "This step creates the boilerplate html code for our TO-DO list app.\n\nUse Ctrl+I to bring up the inline chat, and insert a prompt to generate the boilerplate code. Use #file <topic_3/DIY_boilerplate/tasks.js> and #file <topic_3/DIY_boilerplate/server.js> etc to have Copilot factor in the existence of dependencies to this server.js file.",
+      "line": 10
+    },
+    {
+      "file": "topic_3/DIY_boilerplate/public/styles.css",
+      "description": "This step creates the boilerplate css code for our TO-DO list app.\n\nUse Ctrl+I to bring up the inline chat, and insert a prompt to generate the boilerplate code. Use #file <topic_3/DIY_boilerplate/tasks.js> and #file <topic_3/DIY_boilerplate/server.js> etc to have Copilot factor in the existence of dependencies to this server.js file.\n\nOnce done, you can click the following shell commands below in sequence to test out the code!\n1. Navigate to the working folder:\n>> cd topic_3/DIY_boilerplate\n2. Run the server:\n>> node server.js",
+      "line": 2
+    }
+  ]
+}

@@ -1,7 +1,3 @@
-const express = require('express');
-const { body, param, validationResult } = require('express-validator');
-const sanitizeHtml = require('sanitize-html');
-
 /* 
 This file contains the Express router for handling API requests related to tasks. 
 It includes routes for creating, reading, updating, and deleting tasks. 
